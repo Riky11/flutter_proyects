@@ -3,9 +3,10 @@ import 'package:adv_basics/questions_summary.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.chosenAnswers});
+  const ResultScreen({super.key, required this.chosenAnswers, required this.onRestartQuiz});
 
   final List<String> chosenAnswers;
+  final void Function() onRestartQuiz;
 
   List<Map<String, Object>> getSummaryData() {
     List<Map<String, Object>> summary = [];
@@ -39,8 +40,9 @@ class ResultScreen extends StatelessWidget {
             Text(
               'You answered $numCorrectQuestion out of $numTotalQuestion questions corretly!',
               style: TextStyle(
-                color: const Color.fromARGB(141, 238, 182, 255),
-                fontSize: 24,
+                color: const Color.fromARGB(255, 240, 189, 255),
+                fontSize: 20,
+                fontWeight: FontWeight.bold
               ),
               textAlign: TextAlign.center,
             ),
@@ -48,7 +50,7 @@ class ResultScreen extends StatelessWidget {
             QuestionsSummary(summaryData: getSummaryData()),
             SizedBox(height: 30),
             TextButton.icon(
-              onPressed: (){},
+              onPressed: onRestartQuiz,
               icon: Icon(Icons.restart_alt),
               style: TextButton.styleFrom(foregroundColor: Colors.white),
               label: Text('Restart Quiz!')

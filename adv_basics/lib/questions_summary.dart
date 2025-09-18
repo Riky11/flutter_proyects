@@ -16,14 +16,23 @@ class QuestionsSummary extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                Container(
                   width: 40,
+                  padding: const EdgeInsets.all(5), // espacio dentro del círculo
+                  margin: EdgeInsets.only(right: 10), 
+                  alignment: Alignment.center,                 
+                  decoration: BoxDecoration(
+                    color: data['user_answer'] == data['correct_answer'] 
+                        ? const Color.fromARGB(255, 124, 206, 253)
+                        : const Color.fromARGB(255, 255, 93, 198), // color de fondo
+                    shape: BoxShape.circle, // forma circular
+                  ),
                   child: Text(
                     ((data['question_index'] as int) + 1).toString(),
-                    style: TextStyle(
-                      backgroundColor: const Color.fromARGB(255, 255, 93, 198),
-                    ),
-                  ),
+                    style: TextStyle(                      
+                      fontWeight: FontWeight.bold
+                    ), 
+                  ),  
                 ),
                 Expanded(
                   child: Column(
@@ -33,7 +42,7 @@ class QuestionsSummary extends StatelessWidget {
                         data['question'] as String,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18
+                          fontSize: 16
                           ),
                       ),
                       SizedBox(height: 5),
